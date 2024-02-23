@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "sfw2024"
+version = "0.1.0"
+description = "Ray quick start repository for Software Freedom Week 2024."
+authors = ["Aniruddh Patil <aniruddhpatil07@live.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+transformers = "^4.38.1"
+ray = {version = "2.9.2", extras = ["client"]}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
