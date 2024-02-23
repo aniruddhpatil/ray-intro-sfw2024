@@ -22,7 +22,6 @@ for item in n_list:
 print("Normal Time {}".format(time.time() - serial_start))
 
 ray_start = time.time()
-ray_square_list = [distributed_square.remote(item) for item in n_list]
+ray_square_list_ref = [distributed_square.remote(item) for item in n_list]
 print("Ray Time {}".format(time.time()-ray_start))
-
-ray.shutdown()
+ray_square_list = ray.get(ray_square_list_ref)
