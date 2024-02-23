@@ -55,13 +55,13 @@ services:
       - "8265:8265"
       - "10001:10001"
       - "8081:8081"
-    command: bash -c "ray start --head --dashboard-port=8265 --port=8365 --dashboard-host=0.0.0.0 --redis-password=admin --metrics-export-port=8081 --block"
-    shm_size: 2g
+    command: bash -c "ray start --head --dashboard-port=8265 --port=8365 --dashboard-host=0.0.0.0 --redis-password=admin --metrics-export-port=8081 --object-store-memory 2147483648 --block"
+    shm_size: 4g
     deploy:
       resources:
         limits:
           cpus: '1'
-          memory: '2g'
+          memory: '4g'
     volumes:
       - ray_dashboard:/tmp/ray/:rw
     networks:
@@ -75,7 +75,7 @@ services:
     depends_on:
       - ray-head
     command: bash -c "ray start --address=ray-head:8365 --redis-password=admin --num-cpus=1 --block"
-    shm_size: 2g
+    shm_size: 4g
     deploy:
       mode: replicated
       replicas: 2
